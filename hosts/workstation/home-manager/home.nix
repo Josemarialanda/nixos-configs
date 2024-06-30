@@ -292,6 +292,17 @@
         };
       };
     };
+
+    bash = {
+      # Bash config file
+      bashrcExtra = ''
+      '';
+        
+      # Commands that should be run when initializing an interactive shell
+      initExtra = ''
+        fastfetch
+      '';
+    };
   };
 
   # Create additional desktop shortcuts.

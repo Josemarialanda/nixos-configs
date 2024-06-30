@@ -66,14 +66,6 @@
             nh home switch
           '';
         };
-  
-        # Bash config file
-        bashrcExtra = ''
-        '';
-          
-        # Commands that should be run when initializing an interactive shell
-        initExtra = ''
-        '';
       };
     };
 }
