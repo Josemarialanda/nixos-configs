@@ -73,7 +73,7 @@
     homeConfigurations = {
       "nixos@homelab" = homelab.homeConfiguration;
       "josemaria@workstation" = workstation.homeConfiguration;
-      vm = vm.homeConfiguration;
+      "josemaria@vm" = vm.homeConfiguration;
     };
   };
 }
