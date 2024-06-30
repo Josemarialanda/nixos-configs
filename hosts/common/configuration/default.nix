@@ -16,4 +16,8 @@
     ./gaming.nix
     ./devices.nix
      ];
+
+  nixpkgs.config.allowUnfree = true;
+
+  system.stateVersion = config-variables.stateVersion;
 }

@@ -8,7 +8,5 @@
       (if config.virtualisation.enable == true 
         then [ "qemu" "libvirtd" "kvm" ] 
         else []);
-    openssh.authorizedKeys.keys = [
-    ];
   };
 }

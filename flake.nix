@@ -45,12 +45,12 @@
       userDesc = "Nixos Homelab";
     };
 
-    # workstation = configuration {
-    #   stateVersion = "24.05";
-    #   hostname = "workstation";
-    #   username = "nixos";
-    #   userDesc = "Nixos Workstation";
-    # };
+    workstation = configuration {
+      stateVersion = "24.05";
+      hostname = "workstation";
+      username = "josemaria";
+      userDesc = "Nixos Workstation";
+    };
 
     # vm = configuration {
     #   stateVersion = "24.05";
@@ -67,12 +67,12 @@
     homeManagerModules = import ./modules/home-manager;
     nixosConfigurations = {
       homelab = homelab.nixosConfiguration;
-      # workstation = workstation.nixosConfiguration;
+      workstation = workstation.nixosConfiguration;
       # vm = vm.nixosConfiguration;
     };
     homeConfigurations = {
       "nixos@homelab" = homelab.homeConfiguration;
-      # workstation = workstation.nixosConfiguration;
+      "josemaria@workstation" = workstation.homeConfiguration;
       # vm = vm.nixosConfiguration;
     };
   };

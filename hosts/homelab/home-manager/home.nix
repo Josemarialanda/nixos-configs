@@ -10,8 +10,5 @@
     ../../common/home
   ];
 
-  systemType = "full";
-
-  # Reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  apps.common.include = "cli";
 }

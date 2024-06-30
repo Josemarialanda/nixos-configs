@@ -4,4 +4,7 @@
     ./apps
     ./secrets.nix
      ];
+
+  # Reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
 }

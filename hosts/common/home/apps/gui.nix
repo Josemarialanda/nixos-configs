@@ -10,19 +10,6 @@
   };
 
   config = lib.mkIf config.gui.enable {
-    nixpkgs = {
-      overlays = [
-        outputs.overlays.additions
-        outputs.overlays.modifications
-        outputs.overlays.unstable-packages
-      ];
-      config = {
-        allowUnfree = true;
-        # Workaround for https://github.com/nix-community/home-manager/issues/2942
-        allowUnfreePredicate = _: true;
-        permittedInsecurePackages = [ ];
-      };
-    };
   
     home.packages = with pkgs; [
   
@@ -59,6 +46,7 @@
       vlc
       unstable.parabolic
       monophony
+      spotify
     
       # Office.
       apostrophe

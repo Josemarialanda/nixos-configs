@@ -28,7 +28,7 @@
   # A nix cli helper.
   programs.nh = {
     enable = true;
-    flake = /home/${config-variables.username}/nixos-config;
+    flake = /home/${config-variables.username}/nixos-configs;
     # Automatic garbage collection.
     clean = {
       enable = true;

@@ -1,32 +1,37 @@
-{ inputs, outputs, pkgs, lib, config, config-variables, ... }@args:
+{ inputs, outputs, pkgs, lib, config, config-variables, ... }:
 {
   imports = [ 
     ./hardware-configuration.nix
     ../../common/configuration
      ];
 
-  # Enable the Gnome DE and automatic login.
-  gui.enable = true;
-  gui.enableAutoLogin = true; 
+  # Disable GUI
+  gui.enable = false;
 
-  # Add additional fonts to system.
-  extraFonts.enable = true;
-
-  # Enable Tailscale and Sunshine.
-  remote.enable = true;
-
-  # Enable Sound.
-  soundServer.enable = true;
-
-  # Enable virtualisation.
-  virtualisation.enable = true;
-
-  # Setup AMD GPU drivers.
+  # Enable AMD gpu support
   amd.enable = true;
 
-  # Setup ssh.
-  ssh.enable = true;
-  ssh.authorizedKeys = [];
+  # Disable Logitech devices
+  devices.logitech.enable = false;
 
-  system.stateVersion = config-variables.stateVersion;
+  # Disable extra fonts
+  extraFonts.enable = false;
+
+  # Disable Steam
+  gaming.enable = false;
+  
+  # Enable Remote services
+  remote.enable = true;
+
+  # Disable sound
+  soundServer.enable = false;
+
+  # Setup SSH access
+  ssh.enable = true;
+  ssh.authorizedKeys = [
+
+  ];
+
+  # Enable Virtualisation services
+  virtualisation.enable = true;
 }

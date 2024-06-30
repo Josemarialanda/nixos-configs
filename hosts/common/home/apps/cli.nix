@@ -10,20 +10,6 @@
   };
 
   config = lib.mkIf config.cli.enable {
-
-    nixpkgs = {
-      overlays = [
-        outputs.overlays.additions
-        outputs.overlays.modifications
-        outputs.overlays.unstable-packages
-      ];
-      config = {
-        allowUnfree = true;
-        # Workaround for https://github.com/nix-community/home-manager/issues/2942
-        allowUnfreePredicate = _: true;
-        permittedInsecurePackages = [ ];
-      };
-    };
   
     home.packages = with pkgs; [
       podman-compose
@@ -98,21 +84,6 @@
           rebase = {
             autoStash = true;
             autoSquash = true;
-          };
-        };
-      };
-  
-      starship = {
-        enable = true;
-        enableBashIntegration = true;
-        settings = {
-          character = {
-            success_symbol = "⚡";
-            error_symbol = "🔥";
-          };
-          cmd_duration = {
-            min_time = 500;
-            format = "🕑:[$duration](bold yellow)";
           };
         };
       };
