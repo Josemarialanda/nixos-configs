@@ -5,8 +5,8 @@
     devices.logitech.enable = lib.mkEnableOption "Enable logitech device support";
   };
 
-  config = {
-    hardware.logitech.wireless.enable = config.devices.logitech.enable;
-    hardware.logitech.wireless.enableGraphical = config.devices.logitech.enable;
+  config = lib.mkIf config.devices.logitech.enable {
+    hardware.logitech.wireless.enable = true;
+    hardware.logitech.wireless.enableGraphical = true;
   };
 }

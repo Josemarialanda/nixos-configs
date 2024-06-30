@@ -52,12 +52,12 @@
       userDesc = "Nixos Workstation";
     };
 
-    # vm = configuration {
-    #   stateVersion = "24.05";
-    #   hostname = "vm";
-    #   username = "nixos";
-    #   userDesc = "Nixos VM";
-    # };
+    vm = configuration {
+      stateVersion = "24.05";
+      hostname = "vm";
+      username = "josemaria";
+      userDesc = "Nixos VM";
+    };
 
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
@@ -68,12 +68,12 @@
     nixosConfigurations = {
       homelab = homelab.nixosConfiguration;
       workstation = workstation.nixosConfiguration;
-      # vm = vm.nixosConfiguration;
+      vm = vm.nixosConfiguration;
     };
     homeConfigurations = {
       "nixos@homelab" = homelab.homeConfiguration;
       "josemaria@workstation" = workstation.homeConfiguration;
-      # vm = vm.nixosConfiguration;
+      vm = vm.homeConfiguration;
     };
   };
 }
