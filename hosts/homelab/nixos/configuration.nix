@@ -21,8 +21,8 @@
   # Enable virtualisation.
   virtualisation.enable = true;
 
-  # Setup Nvidia GPU drivers.
-  gpuType = "nvidia";
+  # Setup AMD GPU drivers.
+  amd.enable = true;
 
   # Setup ssh.
   ssh.enable = true;
