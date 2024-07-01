@@ -12,8 +12,8 @@
     ../../common/configuration
   ];
 
-  # Enable GUI
-  gui.enable = true;
+  # Enable Gnome desktop environment
+  gnome.enable = true;
 
   # Enable AMD gpu support
   amd.enable = true;

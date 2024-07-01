@@ -8,7 +8,7 @@
   ...
 }: {
   imports = [
-    ./gui
+    ./gnome.nix
     ./networking.nix
     ./nix.nix
     ./ssh.nix

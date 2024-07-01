@@ -35,16 +35,6 @@
       gitg
       textpieces
 
-      # Gnome tweaks, customization and extensions.
-      gnome.dconf-editor
-      gnome.gnome-tweaks
-      gnomeExtensions.blur-my-shell
-      gnomeExtensions.just-perfection
-      gnomeExtensions.dash-to-dock
-      gnomeExtensions.alphabetical-app-grid
-      gnomeExtensions.app-hider
-      adwsteamgtk
-
       # Cursor themes.
       phinger-cursors
 

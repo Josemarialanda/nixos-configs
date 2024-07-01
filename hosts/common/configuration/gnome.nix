@@ -6,11 +6,15 @@
   ...
 }: {
   options = {
-    desktopEnvironment.enable = lib.mkEnableOption "Enable desktop environment";
-    autoLogin.enable = lib.mkEnableOption "Enable automatic login";
+    gnome.enable = lib.mkEnableOption "Enable Gnome desktop environment";
+    gdm.autoLogin.enable = lib.mkEnableOption "Enable automatic login";
   };
 
-  config = lib.mkIf config.desktopEnvironment.enable {
+  imports = [
+    ./desktopServices.nix
+  ];
+
+  config = lib.mkIf config.gnome.enable {
     # Enable the X11 windowing system.
     services.xserver.enable = true;
 
@@ -20,12 +24,12 @@
     services.xserver.desktopManager.gnome.enable = true;
 
     # Enable automatic login for the user.
-    services.displayManager.autoLogin.enable = config.autoLogin.enable;
+    services.displayManager.autoLogin.enable = config.gdm.autoLogin.enable;
     services.displayManager.autoLogin.user = config-variables.username;
 
     # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-    systemd.services."getty@tty1".enable = !config.autoLogin.enable;
-    systemd.services."autovt@tty1".enable = !config.autoLogin.enable;
+    systemd.services."getty@tty1".enable = !config.gdm.autoLogin.enable;
+    systemd.services."autovt@tty1".enable = !config.gdm.autoLogin.enable;
 
     # Make GDM follow desktop monitor config. (uses user set refresh rate).
     systemd.tmpfiles.rules = let
@@ -61,10 +65,25 @@
         gnome-maps
       ]);
 
+    # Add some additional GNOME applications.
+    environment.systemPackages = with pkgs; [ 
+      gnome.dconf-editor
+      gnome.gnome-tweaks
+      gnomeExtensions.blur-my-shell
+      gnomeExtensions.just-perfection
+      gnomeExtensions.dash-to-dock
+      gnomeExtensions.alphabetical-app-grid
+      gnomeExtensions.app-hider
+      adwsteamgtk
+    ];
+
     # Enable Sushi, a quick previewer for nautilus.
     services.gnome.sushi.enable = true;
 
     # Enable dconf.
     programs.dconf.enable = true;
+
+    # Enable desktop services.
+    desktopServices.enable = true;
   };
 }
