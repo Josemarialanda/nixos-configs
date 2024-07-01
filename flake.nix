@@ -44,13 +44,6 @@
       };
     };
 
-    homelab = configuration {
-      stateVersion = "24.05";
-      hostname = "homelab";
-      username = "nixos";
-      userDesc = "Nixos Homelab";
-    };
-
     workstation = configuration {
       stateVersion = "24.05";
       hostname = "workstation";
@@ -58,10 +51,17 @@
       userDesc = "Nixos Workstation";
     };
 
+    homelab = configuration {
+      stateVersion = "24.05";
+      hostname = "homelab";
+      username = "nixos";
+      userDesc = "Nixos Homelab";
+    };
+
     vm = configuration {
       stateVersion = "24.05";
       hostname = "vm";
-      username = "josemaria";
+      username = "nixos";
       userDesc = "Nixos VM";
     };
   in {
@@ -71,14 +71,14 @@
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
     nixosConfigurations = {
-      homelab = homelab.nixosConfiguration;
       workstation = workstation.nixosConfiguration;
+      homelab = homelab.nixosConfiguration;
       vm = vm.nixosConfiguration;
     };
     homeConfigurations = {
-      "nixos@homelab" = homelab.homeConfiguration;
       "josemaria@workstation" = workstation.homeConfiguration;
-      "josemaria@vm" = vm.homeConfiguration;
+      "nixos@homelab" = homelab.homeConfiguration;
+      "nixos@vm" = vm.homeConfiguration;
     };
   };
 }
