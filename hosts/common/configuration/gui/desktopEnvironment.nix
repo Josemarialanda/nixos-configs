@@ -7,7 +7,7 @@
 }: {
   options = {
     desktopEnvironment.enable = lib.mkEnableOption "Enable desktop environment";
-    enableAutoLogin = lib.mkEnableOption "Enable automatic login";
+    autoLogin.enable = lib.mkEnableOption "Enable automatic login";
   };
 
   config = lib.mkIf config.desktopEnvironment.enable {
@@ -20,12 +20,12 @@
     services.xserver.desktopManager.gnome.enable = true;
 
     # Enable automatic login for the user.
-    services.displayManager.autoLogin.enable = config.enableAutoLogin;
+    services.displayManager.autoLogin.enable = config.autoLogin.enable;
     services.displayManager.autoLogin.user = config-variables.username;
 
     # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-    systemd.services."getty@tty1".enable = !config.enableAutoLogin;
-    systemd.services."autovt@tty1".enable = !config.enableAutoLogin;
+    systemd.services."getty@tty1".enable = !config.autoLogin.enable;
+    systemd.services."autovt@tty1".enable = !config.autoLogin.enable;
 
     # Make GDM follow desktop monitor config. (uses user set refresh rate).
     systemd.tmpfiles.rules = let

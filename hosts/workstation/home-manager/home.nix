@@ -342,11 +342,6 @@
       command = "tilix";
       binding = "<Super>Return";
     };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      name = "rofi launcher";
-      command = "rofi -show drun";
-      binding = "<Alt>Return";
-    };
   };
 
   home.file = {
@@ -386,73 +381,6 @@
         "use-cursor-color": false,
         "use-highlight-color": false,
         "use-theme-colors": false
-      }
-    '';
-
-    # Theme for rofi.
-    ".local/share/rofi/themes/GlobalColorScheme.rasi".text = ''
-      configuration {
-        font: "FiraCode-Retina 14";
-        drun {
-          display-name: "Applications";
-        }
-        run {
-          display-name: "Run";
-        }
-        window {
-          display-name: "Windows";
-        }
-        timeout {
-          delay: 10;
-          action: "kb-cancel";
-        }
-      }
-      * {
-        width: 30%;
-        border: 0;
-        margin: 0;
-        padding: 0;
-        spacing: 0;
-        bg: #${config.colorScheme.palette.base00};
-        bg-alt: #${config.colorScheme.palette.base02};
-        fg: #${config.colorScheme.palette.base05};
-        selectedElem: #${config.colorScheme.palette.base0D};
-        background-color: @bg;
-        text-color: @fg;
-      }
-      window {
-        transparency: "real";
-      }
-      mainbox {
-        children: [inputbar, listview];
-      }
-      inputbar {
-        background-color: @bg-alt;
-        children: [prompt, entry];
-      }
-      entry {
-        background-color: inherit;
-        padding: 12px 3px;
-      }
-      prompt {
-        background-color: inherit;
-        padding: 12px;
-      }
-      listview {
-        lines: 8;
-      }
-      element {
-        children: [element-icon, element-text];
-      }
-      element-icon {
-        padding: 10px 10px;
-      }
-      element-text {
-        padding: 10px 0;
-        text-color: @fg;
-      }
-      element-text selected {
-        text-color: @selectedElem;
       }
     '';
   };
