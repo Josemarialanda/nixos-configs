@@ -1,29 +1,21 @@
-{ inputs, outputs, lib, config, pkgs, config-variables, ... }:
-
 {
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  config-variables,
+  ...
+}: {
   programs.home-manager.enable = true;
   home.username = config-variables.username;
   home.homeDirectory = "/home/" + config-variables.username;
   home.stateVersion = config-variables.stateVersion;
-  
+
   imports = [
     ../../common/home
     inputs.nix-colors.homeManagerModules.default
   ];
-
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-    ];
-    config = {
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
-      permittedInsecurePackages = [ ];
-    };
-  };
 
   age.secrets = {
     gh-ssh-key = {
@@ -33,95 +25,97 @@
     };
   };
 
-  home.packages = with pkgs; [
-    # Development.
-    vscode-fhs
-    meld
-    gitg
-    textpieces
-  
-    # Gnome tweaks, customization and extensions.
-    gnome.dconf-editor
-    gnome.gnome-tweaks
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.just-perfection
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.alphabetical-app-grid
-    gnomeExtensions.app-hider
-    adwsteamgtk
+  home.packages = let
+    cli-tools = import ../../common/cli-tools.nix;
+  in
+    with pkgs; [
+      # Development.
+      vscode-fhs
+      meld
+      gitg
+      textpieces
 
-    # Cursor themes.
-    phinger-cursors
-  
-    # Icon themes.
-    papirus-icon-theme
-      
-    # Internet.
-    google-chrome
-    fragments
-    mumble
-     
-    # Media.
-    stremio
-    shortwave
-    vlc
-    unstable.parabolic
-    monophony
-    spotify
-  
-    # Office.
-    apostrophe
+      # Gnome tweaks, customization and extensions.
+      gnome.dconf-editor
+      gnome.gnome-tweaks
+      gnomeExtensions.blur-my-shell
+      gnomeExtensions.just-perfection
+      gnomeExtensions.dash-to-dock
+      gnomeExtensions.alphabetical-app-grid
+      gnomeExtensions.app-hider
+      adwsteamgtk
 
-    # Utilities.
-    tilix
-    gnome.gnome-boxes
-    bottles
-    distrobox
-    unstable.mission-center
-    gnome.gnome-nettool
-    impression
-    pandoc
-    fsearch
-    bleachbit
-    pods
+      # Cursor themes.
+      phinger-cursors
 
-    # CLI tools.
-    podman-compose
-    appimage-run
-    bottom
-    pfetch
-    ssh-tools
-    wget
-    ffmpeg
-    ripgrep
-    tree
-    multitail
-    jq
-    fx
-    jp
-    yq
-    up
-    rmlint
-    with-shell
-    steam-run
-    trash-cli
-    retry
-    concurrently
-    http-prompt
-    detox
-    git-sync
-    sox
-    catimg
-    bc
-    clac
-    rlwrap
-    wtf
-    pipr
-  ];
+      # Icon themes.
+      papirus-icon-theme
+
+      # Internet.
+      google-chrome
+      fragments
+      mumble
+
+      # Media.
+      stremio
+      shortwave
+      vlc
+      unstable.parabolic
+      monophony
+      spotify
+
+      # Office.
+      apostrophe
+
+      # Utilities.
+      tilix
+      gnome.gnome-boxes
+      bottles
+      distrobox
+      unstable.mission-center
+      gnome.gnome-nettool
+      impression
+      pandoc
+      fsearch
+      bleachbit
+      pods
+
+      # CLI tools.
+      podman-compose
+      appimage-run
+      bottom
+      pfetch
+      ssh-tools
+      wget
+      ffmpeg
+      ripgrep
+      tree
+      multitail
+      jq
+      fx
+      jp
+      yq
+      up
+      rmlint
+      with-shell
+      steam-run
+      trash-cli
+      retry
+      concurrently
+      http-prompt
+      detox
+      git-sync
+      sox
+      catimg
+      bc
+      clac
+      rlwrap
+      wtf
+      pipr
+    ];
 
   # Configurable programs.
   programs = {
-
     # Enable FastFetch: A system information fetching tool.
     fastfetch = {
       enable = true;
@@ -266,15 +260,15 @@
         ];
       };
     };
-    
+
     # Enable MangoHud.
     mangohud = {
       enable = true;
       settings = {
         gpu_temp = "1";
         cpu_temp = "1";
-        vram     = "1";
-        ram      = "1";
+        vram = "1";
+        ram = "1";
       };
     };
 
@@ -297,7 +291,7 @@
       # Bash config file
       bashrcExtra = ''
       '';
-        
+
       # Commands that should be run when initializing an interactive shell
       initExtra = ''
         fastfetch
@@ -332,30 +326,30 @@
     };
   };
 
-    # Global color scheme.
-    colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-pale;
-  
-    # Custom keybindings.
-    dconf.settings = {
-      "org/gnome/settings-daemon/plugins/media-keys" = {
-        custom-keybindings = [
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        ];
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-         name = "Terminal";
-         command = "tilix";
-         binding = "<Super>Return";
-       };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-        name = "rofi launcher";
-        command = "rofi -show drun";
-        binding = "<Alt>Return";
-      };
+  # Global color scheme.
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-pale;
+
+  # Custom keybindings.
+  dconf.settings = {
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+      ];
     };
-  
-  home.file = { 
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "Terminal";
+      command = "tilix";
+      binding = "<Super>Return";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      name = "rofi launcher";
+      command = "rofi -show drun";
+      binding = "<Alt>Return";
+    };
+  };
+
+  home.file = {
     # Theme for tilix.
     ".config/tilix/schemes/GlobalColorScheme.json".text = ''
       {
@@ -462,5 +456,4 @@
       }
     '';
   };
-
 }

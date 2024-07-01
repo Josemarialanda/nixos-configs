@@ -1,6 +1,8 @@
-{ lib, config, ... }:
 {
-
+  lib,
+  config,
+  ...
+}: {
   options = {
     desktopServices.enable = lib.mkEnableOption "Enable desktop services";
   };

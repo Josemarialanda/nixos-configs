@@ -1,6 +1,8 @@
-{ pkgs, lib, config, ... }:
 {
-
+  lib,
+  config,
+  ...
+}: {
   options = {
     devices.logitech.enable = lib.mkEnableOption "Enable logitech device support";
   };

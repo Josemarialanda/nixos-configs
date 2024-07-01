@@ -1,0 +1,34 @@
+{pkgs, ...}:
+with pkgs; [
+  podman-compose
+  appimage-run
+  bottom
+  pfetch
+  ssh-tools
+  wget
+  ffmpeg
+  ripgrep
+  tree
+  multitail
+  jq
+  fx
+  jp
+  yq
+  up
+  rmlint
+  with-shell
+  steam-run
+  trash-cli
+  retry
+  concurrently
+  http-prompt
+  detox
+  git-sync
+  sox
+  catimg
+  bc
+  clac
+  rlwrap
+  wtf
+  pipr
+]

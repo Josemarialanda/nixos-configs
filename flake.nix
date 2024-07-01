@@ -17,7 +17,12 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
     systems = [
       "aarch64-linux"
@@ -28,13 +33,14 @@
     configuration = config-variables: {
       nixosConfiguration = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs outputs config-variables;};
-        modules = [ ./hosts/${config-variables.hostname}/nixos/configuration.nix ];
+          inherit inputs outputs config-variables;
+        };
+        modules = [./hosts/${config-variables.hostname}/nixos/configuration.nix];
       };
       homeConfiguration = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs config-variables;};
-        modules = [ ./hosts/${config-variables.hostname}/home-manager/home.nix ];
+        modules = [./hosts/${config-variables.hostname}/home-manager/home.nix];
       };
     };
 
@@ -58,7 +64,6 @@
       username = "josemaria";
       userDesc = "Nixos VM";
     };
-
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
