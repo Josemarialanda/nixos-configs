@@ -251,6 +251,35 @@
       };
     };
 
+    # Enable Cava bar spectrum audio visualizer.
+    cava = {
+      enable = true;
+      settings = {
+        general = {
+          framerate = 144;
+          autosens = 1;
+          sensitivity = 50;
+          bars = 0;
+          bar_width = 0;
+          bar_spacing = 1;
+          lower_cutoff_freq = 20;
+          higher_cutoff_freq = 20000;
+        };
+        input = {
+          show_idle_bar_heads = 1;
+          waveform = 1;
+        };
+        smoothing = {
+          waves = 1;
+          noise_reduction = 90;
+        };
+        color = {
+          background = "'#${config.colorScheme.palette.base00}'";
+          foreground = "'#${config.colorScheme.palette.base05}'";
+        };
+      };
+    };
+
     # Enable MangoHud.
     mangohud = {
       enable = true;
