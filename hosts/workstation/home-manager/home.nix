@@ -17,6 +17,7 @@
     inputs.nix-colors.homeManagerModules.default
   ];
 
+  # Setup SSH keys.
   age.secrets = {
     gh-ssh-key = {
       file = ./secrets/gh-ssh-key.age;
@@ -28,6 +29,17 @@
       path = "/home/${config-variables.username}/.ssh/id_ed25519";
       mode = "600";
     };
+  };
+
+  # Setup SSH config.
+  home.file = {
+    ".ssh/config".text = ''
+      Host homelab
+        HostName homelab
+        User nixos
+        Port 22
+        IdentityFile ${config.age.secrets.id_ed25519.path}
+    '';
   };
 
   home.packages = let
