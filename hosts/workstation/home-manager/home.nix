@@ -348,21 +348,6 @@
   # Global color scheme.
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-pale;
 
-  # Custom keybindings.
-  dconf.settings = {
-    "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-      ];
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      name = "Terminal";
-      command = "tilix";
-      binding = "<Super>Return";
-    };
-  };
-
   home.file = {
     # Theme for tilix.
     ".config/tilix/schemes/GlobalColorScheme.json".text = ''

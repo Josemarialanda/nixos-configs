@@ -48,7 +48,6 @@
       (with pkgs; [
         gnome-tour
         snapshot
-        gnome-console
         gnome-connections
       ])
       ++ (with pkgs.gnome; [
@@ -80,8 +79,28 @@
     # Enable Sushi, a quick previewer for nautilus.
     services.gnome.sushi.enable = true;
 
-    # Enable dconf.
-    programs.dconf.enable = true;
+    # Configure GNOME.
+    programs.dconf = {
+      enable = true;
+      profiles.user.databases = [
+        {
+          lockAll = true;
+          settings = {
+            # Custom keybindings.
+            "org/gnome/settings-daemon/plugins/media-keys" = {
+              custom-keybindings = [
+                "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+              ];
+            };
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+              binding = "<Super>Return";
+              command = "kgx";
+              name = "GNOME Console";
+            };
+          };
+        }
+      ];
+    };
 
     # Enable desktop services.
     desktopServices.enable = true;
