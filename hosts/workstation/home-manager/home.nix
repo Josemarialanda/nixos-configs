@@ -23,6 +23,11 @@
       path = "/home/${config-variables.username}/.ssh/gh-ssh-key";
       mode = "600";
     };
+    id_ed25519 = {
+      file = ./secrets/id_ed25519.age;
+      path = "/home/${config-variables.username}/.ssh/id_ed25519";
+      mode = "600";
+    };
   };
 
   home.packages = let
