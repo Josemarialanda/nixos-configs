@@ -40,8 +40,8 @@
   programs.steam.enable = true;
 
   # Setup Cachix for binary cache.
-  nix.settings.trusted-substituters = ["https://ai.cachix.org"];
-  nix.settings.trusted-public-keys = ["ai.cachix.org-1:N9dzRK+alWwoKXQlnn0H6aUx0lU/mspIoz8hMvGvbbc="];
+  # nix.settings.trusted-substituters = [];
+  # nix.settings.trusted-public-keys = [];
 
   # Temperature kernel driver.
   boot.kernelModules = ["nct6775"];

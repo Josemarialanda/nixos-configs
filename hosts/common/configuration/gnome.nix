@@ -73,7 +73,6 @@
       gnomeExtensions.dash-to-dock
       gnomeExtensions.alphabetical-app-grid
       gnomeExtensions.app-hider
-      adwsteamgtk
     ];
 
     # Enable Sushi, a quick previewer for nautilus.

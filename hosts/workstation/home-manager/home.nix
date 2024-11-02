@@ -335,33 +335,6 @@
     };
   };
 
-  # Create additional desktop shortcuts.
-  xdg.desktopEntries = {
-    # Desktop entry for the Invoke AI web app.
-    invoke-ai = {
-      name = "Invoke AI";
-      exec = ''nix run github:nixified-ai/flake"#"invokeai-amd'';
-      terminal = true;
-      type = "Application";
-      icon = pkgs.fetchurl {
-        url = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Circle-icons-art.svg/512px-Circle-icons-art.svg.png";
-        sha256 = "sha256-9P4I1FXi55mE8Rw1d2FZwbO2MPkzbB3hy54ool4tGGo=";
-      };
-    };
-
-    # Desktop entry for the Invoke AI development shell.
-    invoke-ai-shell = {
-      name = "Invoke AI shell";
-      exec = ''nix shell github:nixified-ai/flake"#"invokeai-amd'';
-      terminal = true;
-      type = "Application";
-      icon = pkgs.fetchurl {
-        url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Windows_Settings_icon.svg/512px-Windows_Settings_icon.svg.png";
-        sha256 = "sha256-D3gm/8KTqBwuPL9DXDWoGxqV/vhLIjDmKGxbdbmWtvs=";
-      };
-    };
-  };
-
   # Global color scheme.
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-pale;
 
