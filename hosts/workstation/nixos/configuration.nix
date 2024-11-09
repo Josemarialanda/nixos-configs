@@ -15,6 +15,9 @@
   # Enable Gnome desktop environment
   gnome.enable = true;
 
+  # Enable GDM auto login
+  gdm.autoLogin.enable = true;
+
   # Enable AMD gpu support
   amd.enable = true;
 
