@@ -15,6 +15,7 @@
     # Enable Sunshine service.
     services.sunshine = {
       enable = true;
+      autoStart = true;
       openFirewall = true;
       capSysAdmin = true;
       settings.port = 47989;
