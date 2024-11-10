@@ -14,6 +14,8 @@
       enable = true;
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
+      # Create an alias mapping docker to podman.
+      dockerCompat = true;
     };
 
     # Enable libvirtd, a daemon that manages virtual machines.
