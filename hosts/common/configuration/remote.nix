@@ -12,11 +12,8 @@
     # Enable Tailscale client daemon.
     services.tailscale.enable = true;
 
-    # Enable Mullvad VPN client daemon.
-    # services.mullvad-vpn = {
-    #   enable = true;
-    #   package = pkgs.mullvad-vpn;
-    # };
+    # Need to allow tailscale + mullvad-vpn integration.
+    networking.firewall.checkReversePath = "loose";
 
     # Enable Sunshine remote desktop service.
     services.sunshine = {
