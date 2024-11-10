@@ -70,6 +70,8 @@
       unstable.parabolic
       monophony
       spotify
+      pitivi
+      video-trimmer
 
       # Office.
       apostrophe
@@ -86,6 +88,7 @@
       fsearch
       bleachbit
       pods
+      raider
 
       # CLI tools.
       podman-compose
@@ -330,7 +333,6 @@
 
       # Commands that should be run when initializing an interactive shell
       initExtra = ''
-        fastfetch
       '';
     };
   };
