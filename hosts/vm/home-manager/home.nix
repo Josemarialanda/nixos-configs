@@ -16,10 +16,7 @@
     ../../common/home
   ];
 
-  home.packages = let
-    cli-tools = import ../../common/cli-tools.nix;
-  in
-    with pkgs; [];
+  home.packages = with pkgs; [];
 
   age.secrets = {
     gh-ssh-key = {

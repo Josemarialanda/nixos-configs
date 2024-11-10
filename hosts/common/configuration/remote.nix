@@ -12,7 +12,10 @@
     # Enable Tailscale client daemon.
     services.tailscale.enable = true;
 
-    # Enable Sunshine service.
+    # Enable Mullvad VPN client daemon.
+    services.mullvad-vpn.enable = true;
+
+    # Enable Sunshine remote desktop service.
     services.sunshine = {
       enable = true;
       autoStart = true;

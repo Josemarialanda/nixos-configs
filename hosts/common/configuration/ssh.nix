@@ -6,6 +6,8 @@
 }: {
   options = {
     ssh.enable = lib.mkEnableOption "Enable ssh";
+
+    # Authorized SSH keys that can be used to access host.
     ssh.authorizedKeys = lib.mkOption {
       type = with lib.types; listOf str;
       default = [];

@@ -32,96 +32,94 @@
   };
 
   # Setup SSH config.
-  home.file = {
-    ".ssh/config".text = ''
-      Host homelab
-        HostName homelab
-        User nixos
-        Port 22
-        IdentityFile ${config.age.secrets.id_ed25519.path}
-    '';
-  };
+  # home.file = {
+  #   ".ssh/config".text = ''
+  #     Host <insert name>
+  #       HostName <insert hostname>
+  #       User <insert user>
+  #       Port <insert port>
+  #       IdentityFile ${config.age.secrets.id_ed25519.path}
+  #   '';
+  # };
 
-  home.packages = let
-    cli-tools = import ../../common/cli-tools.nix;
-  in
-    with pkgs; [
-      # Development.
-      vscode-fhs
-      meld
-      gitg
-      textpieces
+  # Additional user packages.
+  home.packages = with pkgs; [
+    # Development.
+    vscode-fhs
+    meld
+    gitg
+    textpieces
+        
+    # Cursor themes.
+    phinger-cursors
+        
+    # Icon themes.
+    papirus-icon-theme
+        
+    # Internet.
+    google-chrome
+    fragments
+       
+    # Media.
+    stremio
+    shortwave
+    vlc
+    unstable.parabolic
+    monophony
+    spotify
+    pitivi
+    video-trimmer
+      
+    # Office.
+    apostrophe
+     
+    # Utilities.
+    tilix
+    gnome.gnome-boxes
+    bottles
+    distrobox
+    unstable.mission-center
+    gnome.gnome-nettool
+    impression
+    pandoc
+    fsearch
+    bleachbit
+    pods
+    raider
 
-      # Cursor themes.
-      phinger-cursors
-
-      # Icon themes.
-      papirus-icon-theme
-
-      # Internet.
-      google-chrome
-      fragments
-
-      # Media.
-      stremio
-      shortwave
-      vlc
-      unstable.parabolic
-      monophony
-      spotify
-      pitivi
-      video-trimmer
-
-      # Office.
-      apostrophe
-
-      # Utilities.
-      tilix
-      gnome.gnome-boxes
-      bottles
-      distrobox
-      unstable.mission-center
-      gnome.gnome-nettool
-      impression
-      pandoc
-      fsearch
-      bleachbit
-      pods
-      raider
-
-      # CLI tools.
-      podman-compose
-      appimage-run
-      bottom
-      pfetch
-      ssh-tools
-      wget
-      ffmpeg
-      ripgrep
-      tree
-      multitail
-      jq
-      fx
-      jp
-      yq
-      up
-      rmlint
-      with-shell
-      steam-run
-      trash-cli
-      retry
-      concurrently
-      http-prompt
-      detox
-      git-sync
-      sox
-      catimg
-      bc
-      clac
-      rlwrap
-      wtf
-      pipr
-    ];
+    # CLI tools.
+    podman-compose 
+    appimage-run
+    bottom
+    pfetch
+    ssh-tools
+    wget
+    ffmpeg
+    ripgrep
+    tree
+    multitail
+    jq
+    fx
+    jp
+    yq
+    up
+    rmlint
+    with-shell
+    steam-run
+    trash-cli
+    retry
+    concurrently
+    http-prompt
+    detox
+    git-sync
+    sox
+    catimg
+    bc
+    clac
+    rlwrap
+    wtf
+    pipr
+  ];
 
   # Configurable programs.
   programs = {

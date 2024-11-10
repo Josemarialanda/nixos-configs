@@ -51,13 +51,6 @@
       userDesc = "Nixos Workstation";
     };
 
-    homelab = configuration {
-      stateVersion = "24.05";
-      hostname = "homelab";
-      username = "nixos";
-      userDesc = "Nixos Homelab";
-    };
-
     vm = configuration {
       stateVersion = "24.05";
       hostname = "vm";
@@ -68,16 +61,18 @@
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
     overlays = import ./overlays {inherit inputs;};
+
     nixosModules = import ./modules/nixos;
+
     homeManagerModules = import ./modules/home-manager;
+
     nixosConfigurations = {
       workstation = workstation.nixosConfiguration;
-      homelab = homelab.nixosConfiguration;
       vm = vm.nixosConfiguration;
     };
+    
     homeConfigurations = {
       "josemaria@workstation" = workstation.homeConfiguration;
-      "nixos@homelab" = homelab.homeConfiguration;
       "nixos@vm" = vm.homeConfiguration;
     };
   };
