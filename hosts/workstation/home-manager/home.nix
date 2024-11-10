@@ -61,7 +61,6 @@
       # Internet.
       google-chrome
       fragments
-      mumble
 
       # Media.
       stremio
