@@ -63,6 +63,9 @@
         nh os boot -- --impure
         nh home switch
       '';
+
+      # Alias to edit the home-manager configuration.
+      nhe = "nano ~/nixos-configs/hosts/$(hostname)/home-manager/home.nix";
     };
   };
 }
