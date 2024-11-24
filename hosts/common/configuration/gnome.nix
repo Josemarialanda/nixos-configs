@@ -63,7 +63,6 @@
       ])
       ++ (with pkgs.gnome; [
         epiphany
-        geary
         gnome-characters
         gnome-font-viewer
         yelp
