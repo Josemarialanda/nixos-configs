@@ -50,6 +50,10 @@
     gitg
     textpieces
     unstable.commit
+    unstable.escambo
+    unstable.wildcard
+    squirrel-sql
+    unstable.httpie-desktop
         
     # Cursor themes.
     phinger-cursors
@@ -86,7 +90,7 @@
     gnome.gnome-boxes
     bottles
     distrobox
-    unstable.mission-center
+    resources
     gnome.gnome-nettool
     impression
     pandoc
@@ -94,6 +98,8 @@
     bleachbit
     pods
     raider
+    unstable.inspector
+    whatip
 
     # CLI tools.
     podman-compose 
