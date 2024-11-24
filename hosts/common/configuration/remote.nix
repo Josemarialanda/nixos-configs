@@ -22,8 +22,9 @@
       openFirewall = true;
       capSysAdmin = true;
       settings.port = 47989;
-      applications.apps = [      
-        { name = "2880x1864@60hz";
+      applications.apps = [
+        {
+          name = "2880x1864@60hz";
           prep-cmd = [
             {
               do = ''${pkgs.xorg.xrandr}/bin/xrandr --newmode "2880x1864_60.00"  457.75  2880 3104 3416 3952  1864 1867 1877 1931 -hsync +vsync'';
@@ -41,7 +42,8 @@
           exclude-global-prep-cmd = "false";
           auto-detach = "true";
         }
-        { name = "3840x2160@60hz";
+        {
+          name = "3840x2160@60hz";
           prep-cmd = [
             {
               do = ''${pkgs.xorg.xrandr}/bin/xrandr --newmode "3840x2160_60.00"  457.75  2880 3104 3416 3952  1864 1867 1877 1931 -hsync +vsync'';
@@ -61,6 +63,5 @@
         }
       ];
     };
-
   };
 }

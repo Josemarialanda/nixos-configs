@@ -54,17 +54,17 @@
     unstable.wildcard
     squirrel-sql
     unstable.httpie-desktop
-        
+
     # Cursor themes.
     phinger-cursors
-        
+
     # Icon themes.
     papirus-icon-theme
-        
+
     # Internet.
     google-chrome
     fragments
-       
+
     # Media.
     stremio
     shortwave
@@ -75,13 +75,13 @@
     spotify
     pitivi
     video-trimmer
-      
+
     # Office.
     apostrophe
     drawing
     abiword
     unstable.morphosis
-     
+
     # Utilities.
     endeavour
     tilix
@@ -102,7 +102,7 @@
     whatip
 
     # CLI tools.
-    podman-compose 
+    podman-compose
     appimage-run
     bottom
     pfetch

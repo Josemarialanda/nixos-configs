@@ -46,7 +46,6 @@
         experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
       '';
     };
-    
 
     # Disable the XTerm terminal emulator.
     services.xserver.excludePackages = [pkgs.xterm];
@@ -75,7 +74,7 @@
       ]);
 
     # Add some additional GNOME applications.
-    environment.systemPackages = with pkgs; [ 
+    environment.systemPackages = with pkgs; [
       gnome.dconf-editor
       gnome.gnome-tweaks
       gnomeExtensions.blur-my-shell

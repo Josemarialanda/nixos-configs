@@ -66,7 +66,7 @@
       workstation = workstation.nixosConfiguration;
       vm = vm.nixosConfiguration;
     };
-    
+
     homeConfigurations = {
       "josemaria@workstation" = workstation.homeConfiguration;
       "nixos@vm" = vm.homeConfiguration;
