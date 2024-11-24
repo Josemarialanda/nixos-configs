@@ -70,6 +70,8 @@
       # Alias to edit the host NixOS configuration.
       en = "nano ~/nixos-configs/hosts/$(hostname)/nixos/configuration.nix";
 
+      # Alias to clean the Nix store.
+      nhc = "nh clean all";
     };
   };
 }
