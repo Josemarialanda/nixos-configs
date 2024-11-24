@@ -4,7 +4,7 @@
     {
       "label": "home-manager switch",
       "type": "shell",
-      "command": "home-manager switch --flake .#josemaria@workstation"
+      "command": "home-manager switch --flake .#$(whoami)@$(hostname)"
     }
   ]
 }
