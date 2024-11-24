@@ -49,6 +49,7 @@
     meld
     gitg
     textpieces
+    unstable.commit
         
     # Cursor themes.
     phinger-cursors
@@ -64,6 +65,7 @@
     stremio
     shortwave
     vlc
+    cozy
     unstable.parabolic
     monophony
     spotify
@@ -72,9 +74,15 @@
       
     # Office.
     apostrophe
+    drawing
+    abiword
+    unstable.morphosis
      
     # Utilities.
+    endeavour
     tilix
+    cinnamon.warpinator
+    kid3
     gnome.gnome-boxes
     bottles
     distrobox
