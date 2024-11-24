@@ -64,8 +64,12 @@
         nh home switch
       '';
 
-      # Alias to edit the home-manager configuration.
-      nhe = "nano ~/nixos-configs/hosts/$(hostname)/home-manager/home.nix";
+      # Alias to edit the host home-manager configuration.
+      eh = "nano ~/nixos-configs/hosts/$(hostname)/home-manager/home.nix";
+
+      # Alias to edit the host NixOS configuration.
+      en = "nano ~/nixos-configs/hosts/$(hostname)/nixos/configuration.nix";
+
     };
   };
 }
