@@ -80,7 +80,6 @@
       gnome.gnome-tweaks
       gnomeExtensions.blur-my-shell
       gnomeExtensions.just-perfection
-      gnomeExtensions.dash-to-dock
       gnomeExtensions.alphabetical-app-grid
       gnomeExtensions.app-hider
       gnomeExtensions.auto-move-windows
