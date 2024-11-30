@@ -69,12 +69,13 @@
     stremio
     shortwave
     vlc
-    cozy
+    libation
     unstable.parabolic
     monophony
     spotify
     pitivi
     video-trimmer
+    youtube-music
 
     # Office.
     apostrophe
