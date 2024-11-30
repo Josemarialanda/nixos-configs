@@ -42,6 +42,14 @@
   # Enable Steam
   programs.steam.enable = true;
 
+  # Enable AudioBookshelf audiobook manager.
+  services.audiobookshelf = {
+    enable = true;
+    host = "100.119.151.18";
+    port = 3000;
+    user = config-variables.username;
+  };
+
   # Setup Cachix for binary cache.
   # nix.settings.trusted-substituters = [];
   # nix.settings.trusted-public-keys = [];
