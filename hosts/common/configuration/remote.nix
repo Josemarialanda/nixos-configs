@@ -9,11 +9,12 @@
   };
 
   config = lib.mkIf config.remote.enable {
+
     # Enable Tailscale client daemon.
-    services.tailscale.enable = true;
+    # services.tailscale.enable = true;
 
     # Need to allow tailscale + mullvad-vpn integration.
-    networking.firewall.checkReversePath = "loose";
+    # networking.firewall.checkReversePath = "loose";
 
     # Enable Sunshine remote desktop service.
     services.sunshine = {

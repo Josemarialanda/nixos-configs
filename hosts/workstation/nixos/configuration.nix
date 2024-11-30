@@ -43,7 +43,6 @@
   programs.steam.enable = true;
 
   # Enable AudioBookshelf audiobook manager.
-  # Accessible through tailscale VPN at http://100.119.151.18:3000
   # Accessible through local network at http://192.168.1.252:3000
   services.audiobookshelf = {
     enable = true;
