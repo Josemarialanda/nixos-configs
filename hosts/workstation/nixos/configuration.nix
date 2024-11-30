@@ -43,13 +43,15 @@
   programs.steam.enable = true;
 
   # Enable AudioBookshelf audiobook manager.
-  # In order to access the service, you need to be connected to TailScale VPN.
-  # Open the service in your browser at http://100.119.151.18:3000
+  # Accessible through tailscale VPN at http://100.119.151.18:3000
+  # Accessible through local network at http://192.168.1.252:3000
   services.audiobookshelf = {
     enable = true;
-    host = "100.119.151.18";
+    # Listen for incoming connections on all network interfaces.
+    host = "0.0.0.0";
     port = 3000;
     user = config-variables.username;
+    openFirewall = true;
   };
 
   # Setup Cachix for binary cache.
