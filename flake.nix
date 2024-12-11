@@ -2,10 +2,10 @@
   description = "Nixos configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -37,22 +37,22 @@
         };
         modules = [./hosts/${config-variables.hostname}/nixos/configuration.nix];
       };
-      homeConfiguration = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      homeConfiguration = system: home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {inherit inputs outputs config-variables;};
         modules = [./hosts/${config-variables.hostname}/home-manager/home.nix];
       };
     };
 
     workstation = configuration {
-      stateVersion = "24.05";
+      stateVersion = "24.11";
       hostname = "workstation";
       username = "josemaria";
       userDesc = "Nixos Workstation";
     };
 
     vm = configuration {
-      stateVersion = "24.05";
+      stateVersion = "24.11";
       hostname = "vm";
       username = "nixos";
       userDesc = "Nixos VM";
@@ -68,8 +68,8 @@
     };
 
     homeConfigurations = {
-      "josemaria@workstation" = workstation.homeConfiguration;
-      "nixos@vm" = vm.homeConfiguration;
+      "josemaria@workstation" = workstation.homeConfiguration "x86_64-linux";
+      "nixos@vm" = vm.homeConfiguration "aarch64-linux";
     };
   };
 }

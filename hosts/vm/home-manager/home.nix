@@ -25,4 +25,14 @@
       mode = "600";
     };
   };
+
+  # SSH config.
+  home.file = {
+    ".ssh/config".text = ''
+      Host github.com
+        HostName github.com
+        User git
+        IdentityFile ${config.age.secrets.gh-ssh-key.path}
+    '';
+  };
 }
