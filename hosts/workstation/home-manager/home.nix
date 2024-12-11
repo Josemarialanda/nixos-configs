@@ -31,16 +31,15 @@
     };
   };
 
-  # Setup SSH config.
-  # home.file = {
-  #   ".ssh/config".text = ''
-  #     Host <insert name>
-  #       HostName <insert hostname>
-  #       User <insert user>
-  #       Port <insert port>
-  #       IdentityFile ${config.age.secrets.id_ed25519.path}
-  #   '';
-  # };
+  # SSH config.
+  home.file = {
+    ".ssh/config".text = ''
+      Host github.com
+        HostName github.com
+        User git
+        IdentityFile ${config.age.secrets.gh-ssh-key.path}
+    '';
+  };
 
   # Additional user packages.
   home.packages = with pkgs; [
@@ -70,12 +69,9 @@
     shortwave
     vlc
     libation
-    unstable.parabolic
-    monophony
     spotify
     pitivi
     video-trimmer
-    youtube-music
 
     # Office.
     apostrophe
@@ -96,7 +92,6 @@
     impression
     pandoc
     fsearch
-    bleachbit
     pods
     raider
     unstable.inspector
