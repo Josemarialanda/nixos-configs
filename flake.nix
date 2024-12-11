@@ -45,7 +45,8 @@
     };
 
     workstation = configuration {
-      stateVersion = "24.11";
+      # Don't change the original stateVersion, it's used to track the version of the configuration.
+      stateVersion = "24.05";
       hostname = "workstation";
       username = "josemaria";
       userDesc = "Nixos Workstation";

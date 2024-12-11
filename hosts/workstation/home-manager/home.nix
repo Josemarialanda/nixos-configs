@@ -82,13 +82,13 @@
     # Utilities.
     endeavour
     tilix
-    cinnamon.warpinator
+    warpinator
     kid3
-    gnome.gnome-boxes
+    gnome-boxes
     bottles
     distrobox
     resources
-    gnome.gnome-nettool
+    gnome-nettool
     impression
     pandoc
     fsearch
@@ -100,7 +100,6 @@
     # CLI tools.
     podman-compose
     appimage-run
-    bottom
     pfetch
     ssh-tools
     wget

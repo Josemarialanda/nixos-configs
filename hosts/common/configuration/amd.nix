@@ -16,9 +16,5 @@
     hardware.opengl.extraPackages = with pkgs; [
       rocmPackages.clr.icd
     ];
-
-    # Enable Vulkan support for AMD GPUs.
-    hardware.opengl.driSupport = true; # This is already enabled by default
-    hardware.opengl.driSupport32Bit = true; # For 32 bit applications
   };
 }
