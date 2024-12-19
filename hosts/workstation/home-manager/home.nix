@@ -82,13 +82,13 @@
     # Utilities.
     endeavour
     tilix
-    cinnamon.warpinator
+    warpinator
     kid3
-    gnome.gnome-boxes
+    gnome-boxes
     bottles
     distrobox
     resources
-    gnome.gnome-nettool
+    gnome-nettool
     impression
     pandoc
     fsearch
@@ -100,7 +100,6 @@
     # CLI tools.
     podman-compose
     appimage-run
-    bottom
     pfetch
     ssh-tools
     wget
@@ -150,7 +149,7 @@
         };
         display = {
           separator = "";
-          binaryPrefix = "si";
+          size.binaryPrefix = "si";
           size = {
             ndigits = 0;
           };
@@ -161,7 +160,7 @@
             charElapsed = "";
             charTotal = " ";
           };
-          keyWidth = 6;
+          key.Width = 6;
         };
         modules = [
           {

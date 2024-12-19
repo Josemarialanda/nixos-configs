@@ -52,26 +52,15 @@
       "....." = "cd ../../../..";
 
       # System managemant aliases.
-      nos = "nh os switch -- --impure";
-      nob = "nh os boot -- --impure";
-      nhs = "nh home switch";
-      nhas = ''
-        nh os switch -- --impure
-        nh home switch
-      '';
-      nhab = ''
-        nh os boot -- --impure
-        nh home switch
-      '';
+      nos = "sudo nixos-rebuild switch --flake '.#$(hostname)' --impure";
+      nob = "sudo nixos-rebuild boot --flake '.#$(hostname)' --impure";
+      nhs = "home-manager switch --flake '.#$(whoami)@$(hostname)'";
 
       # Alias to edit the host home-manager configuration.
       eh = "nano ~/nixos-configs/hosts/$(hostname)/home-manager/home.nix";
 
       # Alias to edit the host NixOS configuration.
       en = "nano ~/nixos-configs/hosts/$(hostname)/nixos/configuration.nix";
-
-      # Alias to clean the Nix store.
-      nhc = "nh clean all";
     };
   };
 }

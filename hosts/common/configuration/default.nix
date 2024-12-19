@@ -15,7 +15,6 @@
     ./users.nix
     ./common.nix
     ./amd.nix
-    ./sound.nix
     ./locale.nix
     ./virtualisation.nix
     ./remote.nix

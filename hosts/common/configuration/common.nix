@@ -4,7 +4,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use the latest Linux kernel.
-  boot.kernelPackages = pkgs.linuxPackages_xanmod;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # Enable SSD TRIM support.
   services.fstrim.enable = true;

@@ -37,16 +37,6 @@
       monitorsConfig = pkgs.writeText "gdm_monitors.xml" gdm_monitors_xml;
     in ["L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}"];
 
-    # Enable variable refresh rate and fractional scaling support in GNOME. (Only works on Wayland)
-    # Enable in dconf editor: org.gnome.mutter experimental-features ['variable-refresh-rate', 'scale-monitor-framebuffer']
-    services.xserver.desktopManager.gnome = {
-      extraGSettingsOverridePackages = [pkgs.gnome.mutter];
-      extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
-      '';
-    };
-
     # Disable the XTerm terminal emulator.
     services.xserver.excludePackages = [pkgs.xterm];
 
@@ -59,8 +49,6 @@
         gnome-tour
         snapshot
         gnome-connections
-      ])
-      ++ (with pkgs.gnome; [
         epiphany
         gnome-characters
         gnome-font-viewer
@@ -75,8 +63,8 @@
 
     # Add some additional GNOME applications.
     environment.systemPackages = with pkgs; [
-      gnome.dconf-editor
-      gnome.gnome-tweaks
+      dconf-editor
+      gnome-tweaks
       gnomeExtensions.blur-my-shell
       gnomeExtensions.just-perfection
       gnomeExtensions.alphabetical-app-grid

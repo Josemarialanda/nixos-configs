@@ -30,9 +30,6 @@
   # Enable Remote services
   remote.enable = true;
 
-  # Enable sound
-  soundServer.enable = true;
-
   # Setup SSH access
   ssh.enable = true;
 
