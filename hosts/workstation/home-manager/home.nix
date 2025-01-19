@@ -81,7 +81,7 @@
 
     # Utilities.
     endeavour
-    tilix
+    ghostty
     warpinator
     kid3
     gnome-boxes
@@ -345,45 +345,4 @@
 
   # Global color scheme.
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-pale;
-
-  home.file = {
-    # Theme for tilix.
-    ".config/tilix/schemes/GlobalColorScheme.json".text = ''
-      {
-        "background-color": "#${config.colorScheme.palette.base00}",
-        "badge-color": "#FFFFFF",
-        "bold-color": "#FFFFFF",
-        "comment": "",
-        "cursor-background-color": "#000000",
-        "cursor-foreground-color": "#FFFFFF",
-        "foreground-color": "#${config.colorScheme.palette.base05}",
-        "highlight-background-color": "#000000",
-        "highlight-foreground-color": "#FFFFFF",
-        "name": "Global Color Scheme",
-        "palette": [
-          "#${config.colorScheme.palette.base00}",
-          "#${config.colorScheme.palette.base01}",
-          "#${config.colorScheme.palette.base02}",
-          "#${config.colorScheme.palette.base03}",
-          "#${config.colorScheme.palette.base04}",
-          "#${config.colorScheme.palette.base05}",
-          "#${config.colorScheme.palette.base06}",
-          "#${config.colorScheme.palette.base07}",
-          "#${config.colorScheme.palette.base08}",
-          "#${config.colorScheme.palette.base09}",
-          "#${config.colorScheme.palette.base0A}",
-          "#${config.colorScheme.palette.base0B}",
-          "#${config.colorScheme.palette.base0C}",
-          "#${config.colorScheme.palette.base0D}",
-          "#${config.colorScheme.palette.base0E}",
-          "#${config.colorScheme.palette.base0F}"
-        ],
-        "use-badge-color": false,
-        "use-bold-color": false,
-        "use-cursor-color": false,
-        "use-highlight-color": false,
-        "use-theme-colors": false
-      }
-    '';
-  };
 }
