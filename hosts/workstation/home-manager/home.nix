@@ -345,4 +345,39 @@
 
   # Global color scheme.
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-pale;
+
+  home.file = {
+    # Ghostty config.
+    ".config/ghostty/config".text = ''
+      background-opacity = 0.95
+      background-blur-radius = 15
+      theme = Dracula
+      background = #1e1f29
+      foreground = #e6e6e6
+      selection-background = #44475a
+      selection-foreground = #ffffff
+      cursor-color = #bbbbbb
+      cursor-text = #ffffff
+      cursor-style = bar
+      palette = 0=#000000
+      palette = 1=#ff5555
+      palette = 2=#50fa7b
+      palette = 3=#f1fa8c
+      palette = 4=#bd93f9
+      palette = 5=#ff79c6
+      palette = 6=#8be9fd
+      palette = 7=#bbbbbb
+      palette = 8=#555555
+      palette = 9=#ff5555
+      palette = 10=#50fa7b
+      palette = 11=#f1fa8c
+      palette = 12=#bd93f9
+      palette = 13=#ff79c6
+      palette = 14=#8be9fd
+      palette = 15=#ffffff
+      font-size = 16
+      mouse-hide-while-typing = true
+
+    '';
+  };
 }
