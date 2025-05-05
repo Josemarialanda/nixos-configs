@@ -39,6 +39,10 @@
   # Enable Steam
   programs.steam.enable = true;
 
+  # Enable adb for Android devices.
+  programs.adb.enable = true;
+  users.users.${config-variables.username}.extraGroups = ["adbusers"];
+
   # Enable AudioBookshelf audiobook manager.
   # Accessible through local network at http://192.168.1.252:3000
   services.audiobookshelf = {
