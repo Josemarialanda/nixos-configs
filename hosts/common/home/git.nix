@@ -2,12 +2,11 @@
   # Git configuration
   programs.git = {
     enable = true;
-    userName = "josemarialanda";
-    userEmail = "josemaria.landa@gmail.com";
-    difftastic.enable = true;
-    aliases = {};
     ignores = ["nohup.out"];
-    extraConfig = {
+    settings = {
+      user.name = "josemarialanda";
+      user.email = "josemaria.landa@gmail.com";
+      alias = {};
       init.defaultBranch = "main";
       core.pager = "delta";
       interactive.diffFilter = "delta --color-only";
@@ -22,5 +21,11 @@
         autoSquash = true;
       };
     };
+  };
+
+  # Structural diffs for git.
+  programs.difftastic = {
+    enable = true;
+    git.enable = true;
   };
 }

@@ -8,18 +8,12 @@
   ...
 }: {
   imports = [
-    ./gnome.nix
     ./networking.nix
     ./nix.nix
     ./ssh.nix
     ./users.nix
     ./common.nix
-    ./amd.nix
     ./locale.nix
-    ./virtualisation.nix
-    ./remote.nix
-    ./fonts.nix
-    ./devices.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

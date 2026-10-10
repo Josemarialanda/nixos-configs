@@ -2,16 +2,14 @@
   description = "Nixos configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
-    nix-colors.url = "github:misterio77/nix-colors";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -44,14 +42,6 @@
       };
     };
 
-    workstation = configuration {
-      # Don't change the original stateVersion, it's used to track the version of the configuration.
-      stateVersion = "24.05";
-      hostname = "workstation";
-      username = "josemaria";
-      userDesc = "Nixos Workstation";
-    };
-
     vm = configuration {
       stateVersion = "24.11";
       hostname = "vm";
@@ -63,13 +53,38 @@
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
     overlays = import ./overlays {inherit inputs;};
 
+    # Rebuild shortcuts, e.g. `nix run .#switch` or `nix run .#home`.
+    # Extra arguments are passed through, e.g. `nix run .#switch -- --show-trace`.
+    apps = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      mkApp = name: text: {
+        type = "app";
+        program = nixpkgs.lib.getExe (pkgs.writeShellApplication {
+          inherit name text;
+          runtimeInputs = [pkgs.nixos-rebuild pkgs.hostname home-manager.packages.${system}.default];
+        });
+      };
+      nixosRebuild = action: mkApp "nixos-${action}" ''
+        nixos-rebuild ${action} --sudo --flake "${self}#$(hostname)" "$@"
+      '';
+    in {
+      switch = nixosRebuild "switch";
+      boot = nixosRebuild "boot";
+      test = nixosRebuild "test";
+      dry-build = nixosRebuild "dry-build";
+      home = mkApp "home-switch" ''
+        home-manager switch --flake "${self}#$(whoami)@$(hostname)" "$@"
+      '';
+      home-build = mkApp "home-build" ''
+        home-manager build --flake "${self}#$(whoami)@$(hostname)" "$@"
+      '';
+    });
+
     nixosConfigurations = {
-      workstation = workstation.nixosConfiguration;
       vm = vm.nixosConfiguration;
     };
 
     homeConfigurations = {
-      "josemaria@workstation" = workstation.homeConfiguration "x86_64-linux";
       "nixos@vm" = vm.homeConfiguration "aarch64-linux";
     };
   };
