@@ -1,10 +1,11 @@
 # Claude Code configuration
 
 Claude Code configuration for the `vm` host: instructions, settings, hooks, agents, commands, skills, output styles and MCP servers.
-It's installed by `programs.claude-code` in [`../home.nix`](../home.nix).
+It's a Home Manager module, [`default.nix`](default.nix), imported by [`../home.nix`](../home.nix).
 
 ```
 claude/
+├── default.nix        # the module: programs.claude-code and the github-token secret
 ├── CLAUDE.md          # user-level instructions, becomes ~/.claude/CLAUDE.md (programs.claude-code.context)
 ├── settings.nix       # ~/.claude/settings.json, including hook registrations (programs.claude-code.settings)
 ├── mcp-servers.nix    # MCP servers (programs.claude-code.mcpServers)
@@ -16,7 +17,8 @@ claude/
 └── skills/            # every skill folder here becomes ~/.claude/skills/<folder>/
 ```
 
-The `.nix` files are imported by [`../home.nix`](../home.nix), which passes them `config`, `lib` and `pkgs`.
+The other `.nix` files are imported by [`default.nix`](default.nix), which passes them `config`, `lib` and `pkgs`.
+`settings.nix` is a Home Manager module in `imports` instead, because it also forces the `settings.json` link.
 
 ## Agents
 
@@ -62,7 +64,7 @@ model: sonnet               # optional; haiku, sonnet, opus or inherit
 The system prompt for the agent.
 ```
 
-No change to `home.nix` is needed. To remove an agent, delete its file.
+No Nix change is needed. To remove an agent, delete its file.
 
 ## Commands
 
@@ -90,7 +92,7 @@ The prompt. $ARGUMENTS is replaced with what you type after the command.
 Lines like !`git status` run the command and insert its output.
 ```
 
-No change to `home.nix` is needed. To remove a command, delete its file.
+No Nix change is needed. To remove a command, delete its file.
 
 ## Hooks
 
