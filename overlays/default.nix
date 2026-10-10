@@ -1,18 +1,16 @@
 {inputs, ...}: {
-  additions = final: _prev: import ../pkgs final.pkgs;
-  modifications = final: prev: {
-    # example:
-    #    # Run Alpaca with GPU (AMD) acceleration enabled
-    #    # Accessible through pkgs.alpaca
-    #    alpaca = final.unstable.alpaca.overrideAttrs (oldAttrs: rec {
-    #      ollama = final.unstable.ollama-rocm;
-    #    });
-  };
-  # Accessible through 'pkgs.unstable'
+  # Custom packages from ./pkgs.
+  additions = final: _prev: import ../pkgs final;
+
+  # Overrides of nixpkgs packages, e.g.
+  #   foo = prev.foo.overrideAttrs (old: { ... });
+  modifications = final: prev: {};
+
+  # Accessible through 'pkgs.unstable'.
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = final.stdenv.hostPlatform.system;
-      config.allowUnfree = true;
+      inherit (final.stdenv.hostPlatform) system;
+      inherit (final) config;
     };
   };
 }
