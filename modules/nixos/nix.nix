@@ -14,6 +14,9 @@ in {
       # Opinionated: disable global registry.
       flake-registry = "";
 
+      # Don't warn when building a flake with uncommitted changes.
+      warn-dirty = false;
+
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
     };
