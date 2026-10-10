@@ -17,6 +17,7 @@ in {
     agentsDir = ./agents;
     commandsDir = ./commands;
     hooksDir = ./hooks;
+    rulesDir = ./rules;
     skills = ./skills;
     outputStyles = import ./output-styles.nix claudeArgs;
     mcpServers = import ./mcp-servers.nix claudeArgs;

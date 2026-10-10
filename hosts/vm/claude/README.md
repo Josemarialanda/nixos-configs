@@ -6,10 +6,11 @@ It's a Home Manager module, [`default.nix`](default.nix), imported by [`../home.
 ```
 claude/
 ├── default.nix        # the module: programs.claude-code and the github-token secret
-├── CLAUDE.md          # user-level instructions, becomes ~/.claude/CLAUDE.md (programs.claude-code.context)
+├── CLAUDE.md          # general user-level instructions, becomes ~/.claude/CLAUDE.md (programs.claude-code.context)
 ├── settings.nix       # ~/.claude/settings.json, including hook registrations (programs.claude-code.settings)
 ├── mcp-servers.nix    # MCP servers (programs.claude-code.mcpServers)
 ├── output-styles.nix  # installs everything in output-styles/ (programs.claude-code.outputStyles)
+├── rules/             # topic-specific instructions; every file here becomes ~/.claude/rules/<file>
 ├── agents/            # every file here becomes ~/.claude/agents/<file>
 ├── commands/          # every file here becomes ~/.claude/commands/<file>
 ├── hooks/             # every file here becomes ~/.claude/hooks/<file>; registered in settings.nix
@@ -19,6 +20,12 @@ claude/
 
 The other `.nix` files are imported by [`default.nix`](default.nix), which passes them `config`, `lib` and `pkgs`.
 `settings.nix` is a Home Manager module in `imports` instead, because it also forces the `settings.json` link.
+
+## Rules
+
+`CLAUDE.md` holds general instructions; topic-specific ones live in `rules/` (`code-style.md`, `testing.md`, `git.md`).
+`rules/` is installed with `programs.claude-code.rulesDir`, and Claude Code loads every `.md` file in `~/.claude/rules/` alongside `CLAUDE.md`.
+To add a topic, drop a new `.md` file in `rules/`.
 
 ## Agents
 
