@@ -2,9 +2,82 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "home-manager switch",
+      "label": "nixos: build",
+      "detail": "Build the system config for this host without activating it",
       "type": "shell",
-      "command": "home-manager switch --flake .#$(whoami)@$(hostname)"
+      "command": "nix run .#build",
+      "problemMatcher": []
+    },
+    {
+      "label": "nixos: switch",
+      "detail": "Build and activate the system config (asks for sudo)",
+      "type": "shell",
+      "command": "nix run .#switch",
+      "problemMatcher": []
+    },
+    {
+      "label": "nixos: boot",
+      "detail": "Build the system config and make it the boot default",
+      "type": "shell",
+      "command": "nix run .#boot",
+      "problemMatcher": []
+    },
+    {
+      "label": "home: build",
+      "detail": "Build the Home Manager config without activating it",
+      "type": "shell",
+      "command": "nix run .#home-build",
+      "problemMatcher": []
+    },
+    {
+      "label": "home: switch",
+      "detail": "Build and activate the Home Manager config",
+      "type": "shell",
+      "command": "nix run .#home",
+      "problemMatcher": []
+    },
+    {
+      "label": "build: all",
+      "detail": "Build the system and Home Manager configs",
+      "dependsOn": ["nixos: build", "home: build"],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "format",
+      "detail": "Format all Nix files with alejandra",
+      "type": "shell",
+      "command": "nix fmt .",
+      "problemMatcher": []
+    },
+    {
+      "label": "lint",
+      "detail": "Run the pre-commit hooks (alejandra, deadnix) on all files",
+      "type": "shell",
+      "command": "nix develop -c pre-commit run --all-files",
+      "problemMatcher": []
+    },
+    {
+      "label": "flake: check",
+      "detail": "Evaluate the flake and run its checks",
+      "type": "shell",
+      "command": "nix flake check",
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "flake: update",
+      "detail": "Update all flake inputs in flake.lock",
+      "type": "shell",
+      "command": "nix flake update",
+      "problemMatcher": []
     }
   ]
 }

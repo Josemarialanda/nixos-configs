@@ -61,19 +61,21 @@ Rebuild shortcuts run against the current hostname and user:
 | `nix run .#switch`      | `nh os switch`                    |
 | `nix run .#boot`        | `nh os boot`                      |
 | `nix run .#test`        | `nh os test`                      |
+| `nix run .#build`       | `nh os build`                     |
 | `nix run .#dry-build`   | `nh os build --dry`               |
 | `nix run .#home`        | `nh home switch`                  |
 | `nix run .#home-build`  | `nh home build`                   |
 
 [nh](https://github.com/nix-community/nh) shows a package diff before activating, and also runs weekly GC.
 Extra arguments go to nh, e.g. `nix run .#switch -- --show-trace`.
-Format with `nix fmt` (alejandra).
+Format with `nix fmt .` (alejandra).
+VS Code tasks for these (build, switch, format, lint, check, update) are in `.vscode/tasks.json`.
 
 ## Development
 
-`nix develop` (or direnv, via `.envrc`) gives a shell with nixd, alejandra, statix and deadnix,
-and installs a pre-commit hook that runs those three on staged files. `nix flake check` runs them
-on the whole repo. statix lints are configured in `statix.toml`.
+`nix develop` (or direnv, via `.envrc`) gives a shell with nixd, alejandra and deadnix,
+and installs a pre-commit hook that runs those two on staged files. `nix flake check` runs them
+on the whole repo.
 
 ## Secrets
 

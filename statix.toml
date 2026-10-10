@@ -1,2 +1,0 @@
-# Allow `programs.foo = ...; programs.bar = ...;` as separate, commented blocks.
-disabled = ["repeated_keys"]

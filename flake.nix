@@ -35,11 +35,6 @@
         src = ./.;
         hooks = {
           alejandra.enable = true;
-          # Lints are configured in statix.toml.
-          statix = {
-            enable = true;
-            excludes = ["hardware-configuration\\.nix$"];
-          };
           deadnix = {
             enable = true;
             excludes = ["hardware-configuration\\.nix$"];
@@ -119,6 +114,7 @@
       switch = nhOs "switch";
       boot = nhOs "boot";
       test = nhOs "test";
+      build = nhOs "build";
       dry-build = mkApp "nixos-dry-build" ''
         nh os build --dry "path:${self}" "$@"
       '';
