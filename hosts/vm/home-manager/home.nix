@@ -18,6 +18,7 @@
 
   home.packages = with pkgs; [
     unstable.claude-code
+    claude-monitor
   ];
 
   age.secrets = {
