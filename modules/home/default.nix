@@ -9,6 +9,7 @@
     inputs.nix-index-database.homeModules.nix-index
     ./bash.nix
     ./git.nix
+    ./shell-tools.nix
   ];
 
   home = {

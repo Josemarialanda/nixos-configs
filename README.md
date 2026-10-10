@@ -58,15 +58,22 @@ Rebuild shortcuts run against the current hostname and user:
 
 | Command                 | Does                              |
 |-------------------------|-----------------------------------|
-| `nix run .#switch`      | `nixos-rebuild switch`            |
-| `nix run .#boot`        | `nixos-rebuild boot`              |
-| `nix run .#test`        | `nixos-rebuild test`              |
-| `nix run .#dry-build`   | `nixos-rebuild dry-build`         |
-| `nix run .#home`        | `home-manager switch`             |
-| `nix run .#home-build`  | `home-manager build`              |
+| `nix run .#switch`      | `nh os switch`                    |
+| `nix run .#boot`        | `nh os boot`                      |
+| `nix run .#test`        | `nh os test`                      |
+| `nix run .#dry-build`   | `nh os build --dry`               |
+| `nix run .#home`        | `nh home switch`                  |
+| `nix run .#home-build`  | `nh home build`                   |
 
-Extra arguments are passed through, e.g. `nix run .#switch -- --show-trace`.
+[nh](https://github.com/nix-community/nh) shows a package diff before activating, and also runs weekly GC.
+Extra arguments go to nh, e.g. `nix run .#switch -- --show-trace`.
 Format with `nix fmt` (alejandra).
+
+## Development
+
+`nix develop` (or direnv, via `.envrc`) gives a shell with nixd, alejandra, statix and deadnix,
+and installs a pre-commit hook that runs those three on staged files. `nix flake check` runs them
+on the whole repo. statix lints are configured in `statix.toml`.
 
 ## Secrets
 

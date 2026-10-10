@@ -25,11 +25,15 @@ in {
     channel.enable = false;
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  };
 
-    gc = {
-      automatic = true;
+  # nixos-rebuild/home-manager wrapper with package diffs; also handles GC.
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      extraArgs = "--keep-since 30d";
     };
   };
 }

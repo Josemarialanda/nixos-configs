@@ -4,7 +4,7 @@
 
   # Overrides of nixpkgs packages, e.g.
   #   foo = prev.foo.overrideAttrs (old: { ... });
-  modifications = final: prev: {};
+  modifications = _final: _prev: {};
 
   # Accessible through 'pkgs.unstable'.
   unstable-packages = final: _prev: {

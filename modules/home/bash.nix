@@ -11,11 +11,10 @@
       # Check if there are active SSH connections
       has-ssh-connections = "netstat -tnp -W 2>/dev/null | awk '\$6 == \"ESTABLISHED\" && \$4 ~ /:22\$/ {print \"true\"; found = 1; exit} END { if (found != 1) print \"false\" }'";
 
-      # Variations of ls
-      ll = "ls -l";
-      lo = "ls -o";
-      lh = "ls -lh";
-      la = "ls -la";
+      # Variations of ls (ls, ll, la, lt and lla come from eza in shell-tools.nix).
+      # eza's long view already omits the group and uses human-readable sizes.
+      lo = "eza -l";
+      lh = "eza -l";
 
       # confirm before overwriting something
       "cp" = "cp -i";
