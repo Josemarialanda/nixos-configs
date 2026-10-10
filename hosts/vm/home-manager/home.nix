@@ -16,7 +16,9 @@
     ../../common/home
   ];
 
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [
+    unstable.claude-code
+  ];
 
   age.secrets = {
     gh-ssh-key = {

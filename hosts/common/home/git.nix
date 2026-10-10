@@ -8,8 +8,6 @@
       user.email = "josemaria.landa@gmail.com";
       alias = {};
       init.defaultBranch = "main";
-      core.pager = "delta";
-      interactive.diffFilter = "delta --color-only";
       merge.conflictstyle = "diff3";
       diff.colorMoved = "default";
       pull = {
