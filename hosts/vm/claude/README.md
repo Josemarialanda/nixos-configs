@@ -179,7 +179,6 @@ Home Manager links each file separately, so skills Claude Code manages itself in
 | Skill | Used when |
 |---|---|
 | `api-design` | Adding or changing HTTP/REST endpoints: naming, status codes, errors, pagination, versioning |
-| `database-migrations` | Writing schema or data migrations: expand and contract, locking, batching, rollbacks |
 | `shell-scripting` | Writing Bash scripts: strict mode, quoting, cleanup, argument parsing, ShellCheck |
 
 ### Adding a skill
