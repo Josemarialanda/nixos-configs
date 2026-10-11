@@ -23,7 +23,7 @@ The other `.nix` files are imported by [`default.nix`](default.nix), which passe
 
 ## Rules
 
-`CLAUDE.md` holds general instructions; topic-specific ones live in `rules/` (`code-style.md`, `testing.md`, `git.md`).
+`CLAUDE.md` holds general instructions; topic-specific ones live in `rules/` (`code-style.md`, `testing.md`, `git.md`, `writing-style.md`).
 `rules/` is installed with `programs.claude-code.rulesDir`, and Claude Code loads every `.md` file in `~/.claude/rules/` alongside `CLAUDE.md`.
 To add a topic, drop a new `.md` file in `rules/`.
 
