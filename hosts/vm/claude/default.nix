@@ -22,9 +22,4 @@ in {
     outputStyles = import ./output-styles.nix claudeArgs;
     mcpServers = import ./mcp-servers.nix claudeArgs;
   };
-
-  # Used by the GitHub MCP server in mcp-servers.nix.
-  age.secrets.github-token = {
-    file = ../secrets/github-token.age;
-  };
 }

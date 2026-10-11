@@ -5,7 +5,7 @@ It's a Home Manager module, [`default.nix`](default.nix), imported by [`../home.
 
 ```
 claude/
-├── default.nix        # the module: programs.claude-code and the github-token secret
+├── default.nix        # the module: programs.claude-code
 ├── CLAUDE.md          # general user-level instructions, becomes ~/.claude/CLAUDE.md (programs.claude-code.context)
 ├── settings.nix       # ~/.claude/settings.json, including hook registrations (programs.claude-code.settings)
 ├── mcp-servers.nix    # MCP servers (programs.claude-code.mcpServers)
@@ -23,7 +23,7 @@ The other `.nix` files are imported by [`default.nix`](default.nix), which passe
 
 ## Rules
 
-`CLAUDE.md` holds general instructions; topic-specific ones live in `rules/` (`code-style.md`, `testing.md`, `git.md`, `writing-style.md`).
+`CLAUDE.md` holds general instructions; topic-specific ones live in `rules/` (`code-style.md`, `testing.md`, `git.md`, `writing-style.md`, `token-economy.md`, `linux-troubleshooting.md`).
 `rules/` is installed with `programs.claude-code.rulesDir`, and Claude Code loads every `.md` file in `~/.claude/rules/` alongside `CLAUDE.md`.
 To add a topic, drop a new `.md` file in `rules/`.
 
@@ -32,14 +32,14 @@ To add a topic, drop a new `.md` file in `rules/`.
 `agents/` is installed with `programs.claude-code.agentsDir`, which links the whole directory into `~/.claude/agents/`.
 Every file in it is installed, so keep only agent `.md` files there.
 
-| Agent | Tools | Use it for |
-|---|---|---|
-| `code-reviewer` | Read, Edit, Grep | General review of code quality, security and maintainability |
-| `documentation` | Read, Edit, Write, Grep, Glob | Writing and updating READMEs, comments and usage examples |
-| `test-writer` | Read, Edit, Write, Grep, Glob, Bash | Writing and running tests for new or changed code |
-| `debugger` | Read, Edit, Grep, Glob, Bash | Finding the root cause of errors and test failures |
-| `security-reviewer` | Read, Grep, Glob | Read-only security review of changes |
-| `commit-writer` | Bash, Read (haiku) | Writing a commit message from the staged diff |
+| Agent | Model | Tools | Use it for |
+|---|---|---|---|
+| `code-reviewer` | sonnet | Read, Edit, Grep | General review of code quality, security and maintainability |
+| `documentation` | haiku | Read, Edit, Write, Grep, Glob | Writing and updating READMEs, comments and usage examples |
+| `test-writer` | sonnet | Read, Edit, Write, Grep, Glob, Bash | Writing and running tests for new or changed code |
+| `debugger` | opus | Read, Edit, Grep, Glob, Bash | Finding the root cause of errors and test failures |
+| `security-reviewer` | sonnet | Read, Grep, Glob | Read-only security review of changes |
+| `commit-writer` | haiku | Bash, Read | Writing a commit message from the staged diff |
 
 ### Using an agent
 
@@ -152,8 +152,8 @@ There's no `outputStylesDir` option, so [`output-styles.nix`](output-styles.nix)
 | `Code Only` | Changes with almost no commentary |
 | `Pair Programmer` | Explaining decisions and trade-offs, and checking in before large or risky changes |
 
-Pick a style with `/config` inside Claude Code.
-To make one the default everywhere, set `programs.claude-code.settings.outputStyle = "Concise";`.
+`Concise` is the default, set with `programs.claude-code.settings.outputStyle` in [`settings.nix`](settings.nix).
+To use a different style for one session, pick it with `/config` inside Claude Code.
 
 To add a style, create `output-styles/<name>.md`:
 
@@ -207,23 +207,19 @@ Home Manager passes them to Claude Code through a plugin in the `claude` wrapper
 |---|---|
 | `nixos` | Search NixOS packages, NixOS and Home Manager options, and flake inputs |
 | `playwright` | A headless Chromium browser for testing and reading web pages |
-| `github` | Issues, pull requests, code search and Actions through the GitHub API. Needs `../secrets/github-token.age` |
+| `context7` | Up-to-date documentation and code examples for libraries |
 
 Run `/mcp` inside Claude Code to see the servers and their status.
 
-### Creating the GitHub token
+### GitHub access
 
-The server reads a GitHub personal access token from an agenix secret when it starts, so the token never ends up in the Nix store.
+There is no GitHub MCP server. Claude uses the `gh` CLI, which costs fewer tokens.
+`gh` is set up in [`../home.nix`](../home.nix).
+Log in once with `gh auth login`. gh keeps the token in `~/.config/gh/hosts.yml`, which Home Manager does not manage.
 
-1. Create a [fine-grained token](https://github.com/settings/personal-access-tokens) with access to the repositories and permissions you want Claude to have.
-2. Encrypt it from `hosts/vm/secrets/`. `github-token.age` is already listed in `agenix-rules.nix`:
+## Output limits
 
-   ```sh
-   cd hosts/vm/secrets
-   nix run github:ryantm/agenix -- -e github-token.age -i ~/.ssh/secrets-key
-   ```
-
-3. `git add` the new file and apply. The build fails until this file exists.
+[`settings.nix`](settings.nix) also sets `env` values that limit command and MCP output, and remove colour codes and pagers from command output.
 
 ## Applying changes
 

@@ -1,17 +1,10 @@
 # MCP servers, packaged from nixpkgs.
+# GitHub access goes through the `gh` CLI (see ../home.nix), which costs fewer tokens than an MCP server.
 {
-  config,
   lib,
   pkgs,
   ...
-}: let
-  # Reads the token from the decrypted secret at startup, so it never ends up in the Nix store.
-  githubMcpServer = pkgs.writeShellScript "github-mcp-server" ''
-    GITHUB_PERSONAL_ACCESS_TOKEN=$(cat "${config.age.secrets.github-token.path}")
-    export GITHUB_PERSONAL_ACCESS_TOKEN
-    exec ${lib.getExe pkgs.unstable.github-mcp-server} stdio
-  '';
-in {
+}: {
   nixos = {
     type = "stdio";
     command = lib.getExe pkgs.unstable.mcp-nixos;
@@ -21,8 +14,9 @@ in {
     command = lib.getExe pkgs.unstable.playwright-mcp;
     args = ["--headless"];
   };
-  github = {
+  # Up-to-date library documentation.
+  context7 = {
     type = "stdio";
-    command = "${githubMcpServer}";
+    command = lib.getExe pkgs.unstable.context7-mcp;
   };
 }

@@ -2,6 +2,7 @@
 name: documentation
 description: Writes and updates project documentation
 tools: Read, Edit, Write, Grep, Glob
+model: haiku
 ---
 
 You are a technical writer who documents software projects.

@@ -13,7 +13,19 @@
 in {
   programs.claude-code.settings = {
     theme = "auto";
+    outputStyle = "Concise";
     modelSettings.claude-opus-5-5.effortLevel = "medium";
+
+    env = {
+      # Limit command output, so that one large log cannot fill the context.
+      BASH_MAX_OUTPUT_LENGTH = "15000";
+      MAX_MCP_OUTPUT_TOKENS = "10000";
+      # Remove colour codes and pagers from command output.
+      NO_COLOR = "1";
+      PAGER = "cat";
+      GIT_PAGER = "cat";
+    };
+
     hooks = {
       PreToolUse = [
         {
